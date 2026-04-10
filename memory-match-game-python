@@ -1,0 +1,27 @@
+import random
+# Initialize game variables
+cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] * 2
+random.shuffle(cards)
+game_over = False
+flipped_cards = []
+# Game loop
+while not game_over:
+    # Show current state of cards
+    for index, card in enumerate(cards):
+        if index in flipped_cards:
+            print(f"{card} ", end="")
+        else:
+            print(f"X ", end="")
+    print()
+    # Ask player to flip two cards
+    card1_index = int(input("Enter index of first card: "))
+    card2_index = int(input("Enter index of second card: "))
+    # Check if cards match
+    if cards[card1_index] == cards[card2_index]:
+        flipped_cards.extend([card1_index, card2_index])
+    else:
+        print("Cards don't match. Try again!")
+    # Check if game is over
+    if len(flipped_cards) == len(cards):
+        game_over = True
+        print("Congratulations! You won!")
